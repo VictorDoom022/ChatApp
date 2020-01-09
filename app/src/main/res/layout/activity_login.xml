@@ -14,16 +14,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Account"
+            android:text="Login"
             android:textSize="20sp"
-            android:textStyle="bold"
-            />
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Username"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/email"
@@ -47,8 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/dark"
-            android:text="Register"
+            android:text="Login"
             android:textColor="@android:color/white"/>
-
     </LinearLayout>
 </RelativeLayout>
