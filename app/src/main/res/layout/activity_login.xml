@@ -6,7 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <include
+        layout="@layout/bar_layout"
+        android:id="@+id/toolbar"/>
+
     <LinearLayout
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

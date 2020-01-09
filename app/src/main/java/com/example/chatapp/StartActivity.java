@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 public class StartActivity extends AppCompatActivity {
 
     Button login, register;
-    private FirebaseAuth auth;
+    FirebaseAuth auth;
+    FirebaseUser firebaseUser;
     DatabaseReference reference;
 
     @Override
@@ -21,7 +23,13 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        auth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (firebaseUser != null){
+            Intent intent = new Intent(StartActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         login = findViewById(R.id.login);
         register =findViewById(R.id.register);
