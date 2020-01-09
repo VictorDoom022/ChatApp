@@ -26,18 +26,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText username, email,password;
     Button btn_regiser;
-    Toolbar toolbar = findViewById(R.id.toolBar);
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
     DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-
-        setSupportActionBar(toolbar);
-        getActionBar().setTitle("Register");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);

@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 public class StartActivity extends AppCompatActivity {
 
     Button login, register;
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
     DatabaseReference reference;
 
     @Override

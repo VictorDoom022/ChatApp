@@ -24,18 +24,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText email,password;
     Button btn_login;
 
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
     DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        Toolbar toolbar = findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
-        getActionBar().setTitle("Login");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         auth = FirebaseAuth.getInstance();
 
