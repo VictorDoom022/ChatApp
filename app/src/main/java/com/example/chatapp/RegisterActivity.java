@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn_regiser;
     private FirebaseAuth auth;
     DatabaseReference reference;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,21 +44,27 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         btn_regiser = findViewById(R.id.btn_register);
+        progressDialog = new ProgressDialog(this);
 
         auth = FirebaseAuth.getInstance();
 
         btn_regiser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.setTitle("Registering...");
+                progressDialog.show();
                 String usernametxt = username.getText().toString().trim();
                 String emailtxt =  email.getText().toString().trim();
                 String passwordtxt = password.getText().toString().trim();
 
                 if (TextUtils.isEmpty(usernametxt)||TextUtils.isEmpty(emailtxt)|| TextUtils.isEmpty(passwordtxt)){
+                    progressDialog.dismiss();
                     Toast.makeText(RegisterActivity.this,"Please fill in all shits",Toast.LENGTH_LONG).show();
                 }else if (emailtxt.length()<6){
+                    progressDialog.dismiss();
                     Toast.makeText(RegisterActivity.this,"The password must not be less than 6 characters",Toast.LENGTH_LONG).show();
                 }else{
+                    progressDialog.dismiss();
                     register(usernametxt,emailtxt,passwordtxt);
                 }
             }
