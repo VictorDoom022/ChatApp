@@ -13,15 +13,16 @@
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username"
-        android:id="@+id/username"
-        android:layout_toRightOf="@+id/profile_image"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginEnd="5dp"
         android:layout_toEndOf="@id/profile_image"
-        android:layout_marginLeft="10dp"
-        android:layout_centerVertical="true"
-        android:textSize="18sp"/>
+        android:layout_toRightOf="@+id/profile_image"
+        android:text="Username"
+        android:textSize="18sp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="15dp"
@@ -60,6 +61,6 @@
         android:id="@+id/last_msg"
         android:textColor="@color/dark"
         android:layout_marginLeft="20dp"
-
+        android:maxLines="1"
         />
 </RelativeLayout>
