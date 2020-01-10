@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.chatapp.Adapter.UserAdapter;
 import com.example.chatapp.Model.Chat;
+import com.example.chatapp.Model.Chatlist;
 import com.example.chatapp.Model.User;
 import com.example.chatapp.R;
 import com.google.android.material.chip.ChipGroup;
@@ -42,7 +43,7 @@ public class ChatsFragment extends Fragment {
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
-    private List<String> usersList;
+    private List<Chatlist> usersList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,28 +58,16 @@ public class ChatsFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
-        reference =FirebaseDatabase.getInstance().getReference("Chats");
+        reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usersList.clear();
-
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Chat chat = snapshot.getValue(Chat.class);
-
-                    assert chat!=null;
-                    if (chat.getSender().equals(firebaseUser.getUid())){
-                        usersList.add(chat.getReceiver());
-                    }
-                    if (chat.getReceiver().equals(firebaseUser.getUid())){
-                        usersList.add(chat.getSender());
-                    }
+                    Chatlist chatlist = snapshot.getValue(Chatlist.class);
+                    usersList.add(chatlist);
                 }
-
-                Set<String> hashSet = new HashSet<>(usersList);
-                usersList.clear();
-                usersList.addAll(hashSet);
-                readChats();
+                chatList();
             }
 
             @Override
@@ -86,36 +75,27 @@ public class ChatsFragment extends Fragment {
 
             }
         });
+
         return view;
     }
-    private void readChats(){
+
+    private void chatList() {
         mUsers = new ArrayList<>();
-
         reference = FirebaseDatabase.getInstance().getReference("Users");
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mUsers.clear();
-
-                for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
-
-                    User user = snapshot.getValue(User.class);
-
-                    for (String id : usersList) {
-
-                        assert user != null;
-                        if (user.getId().equals(id)) {
-
-                            mUsers.add(user);
-
-                        }
-
-                    }
-                }
-
-                userAdapter = new UserAdapter(getContext(),mUsers,true);
-                recyclerView.setAdapter(userAdapter);
+               mUsers.clear();
+               for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                   User user = snapshot.getValue(User.class);
+                   for (Chatlist chatlist : usersList){
+                       if (user.getId().equals(chatlist.getId())){
+                           mUsers.add(user);
+                       }
+                   }
+               }
+               userAdapter = new UserAdapter(getContext(),mUsers,true);
+               recyclerView.setAdapter(userAdapter);
             }
 
             @Override
