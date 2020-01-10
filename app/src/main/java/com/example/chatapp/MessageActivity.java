@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -265,7 +266,6 @@ public class MessageActivity extends AppCompatActivity {
                     chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
                         mchat.add(chat);
                     }
-
                     messageAdapter = new MessageAdapter(MessageActivity.this,mchat,imageurl);
                     recyclerView.setAdapter(messageAdapter);
                 }
@@ -276,6 +276,12 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void currentUser(String userid){
+        SharedPreferences.Editor editor = getSharedPreferences("PREFS",MODE_PRIVATE).edit();
+        editor.putString("currentuser",userid);
+        editor.apply();
     }
 
     private void status(String status){
@@ -289,8 +295,10 @@ public class MessageActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        final String userid = intent.getStringExtra("userid");
         super.onResume();
         status("online");
+        currentUser(userid);
     }
 
     @Override
@@ -298,5 +306,6 @@ public class MessageActivity extends AppCompatActivity {
         super.onPause();
         reference.removeEventListener(seenListener);
         status("offline");
+        currentUser("none");
     }
 }
