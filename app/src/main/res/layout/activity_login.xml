@@ -47,5 +47,17 @@
             android:background="@color/dark"
             android:text="Login"
             android:textColor="@android:color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Forgot your passowrd"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/forgot_password"
+            android:textStyle="bold"/>
+
     </LinearLayout>
 </RelativeLayout>
