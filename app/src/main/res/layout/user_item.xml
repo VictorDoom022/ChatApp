@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@color/cardview_shadow_end_color">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="50dp"
@@ -22,6 +23,7 @@
         android:layout_toEndOf="@id/profile_image"
         android:layout_toRightOf="@+id/profile_image"
         android:text="Username"
+        android:textColor="@color/dark"
         android:textSize="18sp" />
 
     <de.hdodenhof.circleimageview.CircleImageView

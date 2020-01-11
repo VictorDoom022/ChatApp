@@ -36,6 +36,7 @@
             android:text="seen"
             android:layout_below="@id/show_message"
             android:layout_alignParentRight="true"
+            android:textColor="@color/dark"
             android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>

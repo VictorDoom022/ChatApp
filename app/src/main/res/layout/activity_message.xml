@@ -7,6 +7,10 @@
     android:background="#e6e6e6"
     tools:context=".MessageActivity">
 
+<!--    <include-->
+<!--        layout="@layout/bar_layout"-->
+<!--        android:id="@+id/toolbar"/>-->
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar_layout"
         android:layout_width="match_parent"
@@ -59,13 +63,14 @@
             android:layout_centerVertical="true"
             android:textColor="@color/dark"
             android:hint="Type a message..."
+            android:textColorHint="@color/dark"
             />
 
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/btn_send"
-            android:background="@drawable/ic_action_name"
+            android:background="@drawable/ic_send_black_24dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>

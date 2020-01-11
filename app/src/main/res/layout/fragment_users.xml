@@ -3,16 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.UsersFragment">
+
+    tools:context=".Fragments.UsersFragment"
+    android:background="#FFF">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:hint="Search..."
+        android:textColor="@color/dark"
+        android:textColorHint="@color/dark"
         android:id="@+id/search_users"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/cardview_shadow_end_color"
         android:layout_below="@+id/search_users"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
