@@ -16,12 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapp.Model.User;
 import com.example.chatapp.R;
+import com.example.chatapp.ResetPasswordActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,6 +48,8 @@ public class ProfileFragment extends Fragment {
     CircleImageView image_profile;
     TextView username;
 
+    Button btn_changeUsername, btn_changePassword;
+
     DatabaseReference reference;
     FirebaseUser firebaseUser;
 
@@ -57,6 +61,16 @@ public class ProfileFragment extends Fragment {
 
         image_profile = view.findViewById(R.id.profile_image);
         username = view.findViewById(R.id.username);
+        btn_changeUsername = view.findViewById(R.id.btn_changeUsername);
+        btn_changePassword = view.findViewById(R.id.btn_changePassword);
+
+        btn_changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),ResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
