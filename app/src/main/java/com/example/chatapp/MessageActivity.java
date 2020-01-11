@@ -35,7 +35,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -164,6 +168,10 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void sendMessage(String sender, final String receiver, final String message){
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        String formattedDTime = dateFormat.format(date);
         final String userid = intent.getStringExtra("userid");
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -173,6 +181,7 @@ public class MessageActivity extends AppCompatActivity {
         hashMap.put("receiver",receiver);
         hashMap.put("message",message);
         hashMap.put("isseen",false);
+        hashMap.put("send_time",formattedDTime);
 
         reference.child("Chats").push().setValue(hashMap);
 
@@ -232,7 +241,6 @@ public class MessageActivity extends AppCompatActivity {
                             if (response.code() == 200){
                                 if (response.body().success != 1){
                                     Toast.makeText(MessageActivity.this,"Failed",Toast.LENGTH_LONG).show();
-
                                 }
                             }
                         }

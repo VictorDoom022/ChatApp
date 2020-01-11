@@ -59,9 +59,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        String formattedDTime = dateFormat.format(date);
         Chat chat = mChat.get(position);
 
         holder.show_message.setText(chat.getMessage());
+        holder.send_time.setText(chat.getSend_time());
 
         if (imageurl.equals("default")){
             holder.profile_image.setImageResource(R.drawable.ic_action_name);
@@ -70,10 +75,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         }
 
         if (position == mChat.size()-1){
-            Calendar calendar = Calendar.getInstance();
-            Date date = calendar.getTime();
-            DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-            String formattedDTime = dateFormat.format(date);
+//            Calendar calendar = Calendar.getInstance();
+//            Date date = calendar.getTime();
+//            DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+//            String formattedDTime = dateFormat.format(date);
             if (chat.isIsseen()){
                 holder.txt_seen.setText("Seen"+" "+formattedDTime);
             }else{
@@ -98,6 +103,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         public TextView show_message;
         public ImageView profile_image;
+        public TextView send_time;
 
         public TextView txt_seen;
 
@@ -107,6 +113,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             show_message = itemView.findViewById(R.id.show_message);
             profile_image = itemView.findViewById(R.id.profile_image);
             txt_seen = itemView.findViewById(R.id.text_seen);
+            send_time = itemView.findViewById(R.id.send_time);
         }
     }
 

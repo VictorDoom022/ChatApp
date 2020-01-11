@@ -31,5 +31,15 @@
         android:layout_below="@id/show_message"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/send_time"
+        android:paddingLeft="8dp"
+        android:layout_toRightOf="@+id/show_message"
+        android:gravity="center"
+        android:textColor="@color/dark"
+        android:paddingTop="10dp"/>
+
 
 </RelativeLayout>

@@ -39,5 +39,15 @@
             android:textColor="@color/dark"
             android:layout_alignParentEnd="true"/>
 
+        <TextView
+            android:textColor="@color/dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/send_time"
+            android:layout_toLeftOf="@+id/show_message"
+            android:gravity="center"
+            android:paddingRight="8dp"
+            android:paddingTop="10dp"/>
+
     </RelativeLayout>
 </RelativeLayout>
