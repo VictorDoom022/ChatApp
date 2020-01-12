@@ -57,13 +57,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/card"
         android:orientation="vertical">
-        <Button
-        android:id="@+id/btn_changeUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark"
-        android:text="Change Username"
-        android:textColor="@color/light"/>
 
         <Button
             android:id="@+id/btn_changePassword"

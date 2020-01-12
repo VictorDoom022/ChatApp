@@ -61,7 +61,7 @@ public class ProfileFragment extends Fragment {
 
         image_profile = view.findViewById(R.id.profile_image);
         username = view.findViewById(R.id.username);
-        btn_changeUsername = view.findViewById(R.id.btn_changeUsername);
+
         btn_changePassword = view.findViewById(R.id.btn_changePassword);
 
         btn_changePassword.setOnClickListener(new View.OnClickListener() {
