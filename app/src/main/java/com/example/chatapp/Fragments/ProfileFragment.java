@@ -22,9 +22,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapp.AboutAppActivity;
+import com.example.chatapp.MainActivity;
 import com.example.chatapp.Model.User;
 import com.example.chatapp.R;
 import com.example.chatapp.ResetPasswordActivity;
+import com.example.chatapp.StartActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,7 +51,7 @@ public class ProfileFragment extends Fragment {
     CircleImageView image_profile;
     TextView username;
 
-    Button  btn_changePassword, btn_aboutapp;
+    Button  btn_changePassword, btn_aboutapp, btnlogout;
 
     DatabaseReference reference;
     FirebaseUser firebaseUser;
@@ -65,6 +67,16 @@ public class ProfileFragment extends Fragment {
 
         btn_changePassword = view.findViewById(R.id.btn_changePassword);
         btn_aboutapp = view.findViewById(R.id.btn_aboutApp);
+        btnlogout = view.findViewById(R.id.btn_logout);
+
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getActivity(), StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
         btn_changePassword.setOnClickListener(new View.OnClickListener() {
             @Override

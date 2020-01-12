@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
 
+
         profile_image = findViewById(R.id.profile_image);
         username = findViewById(R.id.username);
 
@@ -129,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.logout:
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(MainActivity.this,StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-        }
+//        switch (item.getItemId()){
+//            case R.id.logout:
+//                FirebaseAuth.getInstance().signOut();
+//                Intent intent = new Intent(MainActivity.this,StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                return true;
+//        }
         return false;
     }
 

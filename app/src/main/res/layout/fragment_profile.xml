@@ -76,6 +76,15 @@
             android:text="About THIS APP"
             android:textColor="@color/light"/>
 
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/dark"
+            android:text="LOG OUT"
+            android:textColor="@color/light"/>
+
     </LinearLayout>
 
 </RelativeLayout>

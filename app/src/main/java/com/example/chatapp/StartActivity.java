@@ -1,7 +1,9 @@
 package com.example.chatapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -50,7 +52,17 @@ public class StartActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this,LoginActivity.class));
+                String notice = "This app is still in early stage of development. You may experience some bugs and glitches.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
+                builder.setMessage(notice).setCancelable(false)
+                        .setPositiveButton("Alright", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(StartActivity.this,LoginActivity.class));
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
 
