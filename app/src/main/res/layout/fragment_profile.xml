@@ -35,17 +35,17 @@
                 android:src="@drawable/ic_action_name"/>
 
             <TextView
-                android:id="@+id/username"
-                style="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/profile_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="20dp"
-                android:text="Username"
-                android:textColor="@color/dark"
-                android:textSize="18sp"/>
+            android:id="@+id/username"
+            style="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:text="Username"
+            android:textColor="@color/dark"
+            android:textSize="18sp"/>
         </RelativeLayout>
 
 
@@ -65,6 +65,15 @@
             android:layout_marginTop="15dp"
             android:background="@color/dark"
             android:text="Change Password"
+            android:textColor="@color/light"/>
+
+        <Button
+            android:id="@+id/btn_aboutApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/dark"
+            android:text="About THIS APP"
             android:textColor="@color/light"/>
 
     </LinearLayout>

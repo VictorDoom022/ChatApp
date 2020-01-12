@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.chatapp.AboutAppActivity;
 import com.example.chatapp.Model.User;
 import com.example.chatapp.R;
 import com.example.chatapp.ResetPasswordActivity;
@@ -48,7 +49,7 @@ public class ProfileFragment extends Fragment {
     CircleImageView image_profile;
     TextView username;
 
-    Button btn_changeUsername, btn_changePassword;
+    Button  btn_changePassword, btn_aboutapp;
 
     DatabaseReference reference;
     FirebaseUser firebaseUser;
@@ -63,11 +64,20 @@ public class ProfileFragment extends Fragment {
         username = view.findViewById(R.id.username);
 
         btn_changePassword = view.findViewById(R.id.btn_changePassword);
+        btn_aboutapp = view.findViewById(R.id.btn_aboutApp);
 
         btn_changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),ResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_aboutapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AboutAppActivity.class);
                 startActivity(intent);
             }
         });
