@@ -20,14 +20,16 @@
             android:name=".ResetPasswordActivity"
             android:parentActivityName=".LoginActivity" />
         <activity android:name=".MessageActivity" />
-        <activity android:name=".StartActivity">
+        <activity android:name=".StartActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".StartActivity" />
