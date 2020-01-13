@@ -38,6 +38,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 
 import java.util.HashMap;
@@ -56,6 +60,11 @@ public class ProfileFragment extends Fragment {
     DatabaseReference reference;
     FirebaseUser firebaseUser;
 
+    StorageReference storageReference;
+    private static final int IMAGE_REQUEST =1;
+    private Uri imageUri;
+    private StorageTask uploadTask;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,6 +73,8 @@ public class ProfileFragment extends Fragment {
 
         image_profile = view.findViewById(R.id.profile_image);
         username = view.findViewById(R.id.username);
+
+        storageReference = FirebaseStorage.getInstance().getReference("uploads");
 
         btn_changePassword = view.findViewById(R.id.btn_changePassword);
         btn_aboutapp = view.findViewById(R.id.btn_aboutApp);
@@ -114,6 +125,91 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+
+        image_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openImage();
+            }
+        });
         return view;
+    }
+
+    private void openImage(){
+        //open documents/file explorer
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,IMAGE_REQUEST);
+    }
+    private String getFileExtension(Uri uri){
+        ContentResolver contentResolver = getContext().getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return  mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    private void uploadImage(){
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Image Uploading");
+        progressDialog.show();
+
+        if (imageUri !=null){
+            final StorageReference fileReference = storageReference.child(System.currentTimeMillis()
+                    +"."+getFileExtension(imageUri));
+
+            uploadTask = fileReference.putFile(imageUri);
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot,Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()){
+                        throw  task.getException();
+                    }
+
+                    return fileReference.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(getContext(),"Image Selected!",Toast.LENGTH_LONG).show();
+                        Uri downloadUri = task.getResult();
+                        String mUri = downloadUri.toString();
+
+                        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+                            HashMap<String,Object> map = new HashMap<>();
+                            map.put("imageURL",mUri);
+                            reference.updateChildren(map);
+                         progressDialog.dismiss();
+                    }else{
+                        Toast.makeText(getActivity(), "Failed", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                }
+            });
+        }else {
+            Toast.makeText(getContext(),"No Image Selected!",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == IMAGE_REQUEST
+        && data !=null && data.getData() !=null){
+            imageUri = data.getData();
+
+            if (uploadTask !=null && uploadTask.isInProgress()){
+                Toast.makeText(getContext(),"Uploading",Toast.LENGTH_LONG).show();
+
+            }else{
+                uploadImage();
+            }
+        }
     }
 }

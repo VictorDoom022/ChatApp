@@ -3,6 +3,9 @@
     package="com.example.chatapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -12,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AboutAppActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".LoginActivity"></activity>
         <activity
             android:name=".ResetPasswordActivity"
             android:parentActivityName=".LoginActivity" />
