@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,7 @@ public class ProfileFragment extends Fragment {
     TextView username;
 
     Button  btn_changePassword, btn_aboutapp, btnlogout;
+    ImageButton btn_edit_image;
 
     DatabaseReference reference;
     FirebaseUser firebaseUser;
@@ -79,6 +81,8 @@ public class ProfileFragment extends Fragment {
         btn_changePassword = view.findViewById(R.id.btn_changePassword);
         btn_aboutapp = view.findViewById(R.id.btn_aboutApp);
         btnlogout = view.findViewById(R.id.btn_logout);
+
+        btn_edit_image = view.findViewById(R.id.btn_edit_image);
 
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +127,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        btn_edit_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openImage();
             }
         });
 
