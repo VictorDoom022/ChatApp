@@ -10,6 +10,8 @@ import android.content.ContextWrapper;
 import android.net.Uri;
 import android.os.Build;
 
+import com.example.chatapp.R;
+
 public class OreoNotification extends ContextWrapper {
     private static final String CHANNEL_ID ="com.example.chatapp";
     private static final String CHANNEL_NAME = "chatapp";
@@ -49,7 +51,7 @@ public class OreoNotification extends ContextWrapper {
                 .setContentIntent(pendingIntent)
                 .setContentTitle(title)
                 .setContentText(body)
-                .setSmallIcon(Integer.parseInt(icon))
+                .setSmallIcon(R.drawable.ic_chat_bubble_black_24dp)
                 .setSound(soundUri)
                 .setAutoCancel(true);
     }

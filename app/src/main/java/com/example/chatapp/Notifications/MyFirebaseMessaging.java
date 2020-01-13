@@ -14,6 +14,7 @@ import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
 
 import com.example.chatapp.MessageActivity;
+import com.example.chatapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -91,7 +92,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
 
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(Integer.parseInt(icon))
+                .setSmallIcon(R.drawable.ic_chat_bubble_black_24dp)
                 .setContentText(title)
                 .setContentText(body)
                 .setAutoCancel(true)
