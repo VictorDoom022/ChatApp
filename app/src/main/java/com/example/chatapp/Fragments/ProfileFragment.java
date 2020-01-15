@@ -1,8 +1,10 @@
 package com.example.chatapp.Fragments;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
@@ -89,9 +91,23 @@ public class ProfileFragment extends Fragment {
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getActivity(), StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("There will be some weird shit bugs after you logged out :)")
+                        .setTitle("Confirm Log out?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(getActivity(), StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                            }
+                        }).setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).show();
+
             }
         });
 

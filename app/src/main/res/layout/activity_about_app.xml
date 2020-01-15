@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/username"
             android:layout_centerHorizontal="true"
-            android:text="2.0-macam-stable"
+            android:text="2.0.1-macam-stable"
             android:textColor="@color/dark"
             android:textSize="13sp"/>
 
