@@ -27,6 +27,7 @@ import com.example.chatapp.MainActivity;
 import com.example.chatapp.Model.User;
 import com.example.chatapp.R;
 import com.example.chatapp.ResetPasswordActivity;
+import com.example.chatapp.ResetUsernameActivity;
 import com.example.chatapp.StartActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,7 +57,7 @@ public class ProfileFragment extends Fragment {
     CircleImageView image_profile;
     TextView username;
 
-    Button  btn_changePassword, btn_aboutapp, btnlogout;
+    Button  btn_changePassword, btn_aboutapp, btnlogout,btn_changeUsername;
     ImageButton btn_edit_image;
 
     DatabaseReference reference;
@@ -81,6 +82,7 @@ public class ProfileFragment extends Fragment {
         btn_changePassword = view.findViewById(R.id.btn_changePassword);
         btn_aboutapp = view.findViewById(R.id.btn_aboutApp);
         btnlogout = view.findViewById(R.id.btn_logout);
+        btn_changeUsername = view.findViewById(R.id.btn_changeUsername);
 
         btn_edit_image = view.findViewById(R.id.btn_edit_image);
 
@@ -97,6 +99,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),ResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_changeUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ResetUsernameActivity.class);
                 startActivity(intent);
             }
         });

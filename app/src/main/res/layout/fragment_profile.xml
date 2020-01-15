@@ -78,6 +78,15 @@
             android:textColor="@color/light"/>
 
         <Button
+            android:id="@+id/btn_changeUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/dark"
+            android:text="Change Username"
+            android:textColor="@color/light"/>
+
+        <Button
             android:id="@+id/btn_aboutApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
